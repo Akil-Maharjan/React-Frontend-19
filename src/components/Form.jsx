@@ -5,16 +5,29 @@ const Form = () => {
     name: "",
     email: "",
     gender: "",
+    number: "",
+    address: "",
+    hobbies: [],
   });
   const [error, setError] = useState({});
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+  const { name, value, type, checked } = e.target;
+
+  if (type === "checkbox") {
     setFormData({
       ...formData,
-      [name] : value,
+      hobbies: checked
+        ? [...formData.hobbies, value]
+        : formData.hobbies.filter((hobby) => hobby !== value),
     });
-  };
+  } else {
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  }
+};
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -27,7 +40,7 @@ const Form = () => {
       return;
     }
     alert(
-      `Form submitted with the following data: \nName: ${formData.name} \nEmail: ${formData.email} \nGender: ${formData.gender}`,
+      `Form submitted with the following data: \nName: ${formData.name} \nEmail: ${formData.email} \nGender: ${formData.gender} \nNumber: ${formData.number} \nAddress: ${formData.address} \nHobbies: ${formData.hobbies.join(", ")}`,
     );
     setError({});
   };
@@ -65,9 +78,33 @@ const Form = () => {
             />
             {error.email && <span>{error.email}</span>}
           </div>
-          <div className="flex flex-col items-center gap-4">
+               <div className="flex  items-center gap-4">
+         <label htmlFor="address">Address</label>
+            <input 
+            className="border rounded-md py-2 px-3 focus:outline-none"
+            id="address"
+            name="address"
+            value={formData.address}
+            type="text"
+            placeholder="Address"
+            onChange={handleChange}
+            />
+          </div>
+          <div className="flex  items-center gap-4">
+         <label htmlFor="address">Number</label>
+            <input 
+            className="border rounded-md py-2 px-3 focus:outline-none"
+            id="number"
+            name="number"
+            value={formData.number}
+            type="text"
+            placeholder="Number"
+            onChange={handleChange}
+            />
+          </div>
+          <div className="flex flex-col items-start justify-start gap-4">
             <label htmlFor="gender">Gender </label>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
               <input
                 type="radio"
                 name="gender"
@@ -88,6 +125,39 @@ const Form = () => {
               <label htmlFor="female">Female</label>
             </div>
           </div>
+          <div className="flex flex-col items-center gap-4"> 
+             <label htmlFor="hobbies">Hobbies</label>
+            <div className="flex items-center gap-3">
+              <input
+                type="checkbox"
+                name="hobbies"
+                id="reading"
+                checked={formData.hobbies.includes("reading")}
+                value="reading"
+                onChange={handleChange}
+              />
+              <label htmlFor="reading">Reading</label>
+              <input
+                type="checkbox"
+                name="hobbies"
+                id="playing"
+                checked={formData.hobbies.includes("playing")}
+                value="playing"
+                onChange={handleChange}
+              />
+              <label htmlFor="playing">Playing</label>
+              <input
+                type="checkbox"
+                name="hobbies"
+                id="coding"
+                checked={formData.hobbies.includes("coding")}
+                value="coding"
+                onChange={handleChange}
+              />
+              <label htmlFor="coding">Playing</label>
+            </div>
+          </div>
+     
           <button type="submit">Submit</button>
         </div>
       </form>
