@@ -1,16 +1,12 @@
-import StopWatch from "./component/StopWatch";
+import { RouterProvider } from "react-router-dom";
 
+import { Routes } from "./Routes";
 
-
-
-
-
-// import LiftUp from "./components/LiftUp";
 function App() {
  
 
   return (
-   <StopWatch />
+    <RouterProvider router={Routes} />
   );
 }
 
