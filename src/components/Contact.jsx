@@ -1,7 +1,10 @@
+import { useContext } from "react";
+import { ThemeContext } from "./context/ThemeContext";
 
 const Contact = () => {
+  const {theme} = useContext(ThemeContext);
   return (
-    <div className="mt-20">This is Contact Page</div>
+    <div className={`${theme === 'light' ? 'bg-white text-black' : 'bg-gray-900 text-white'} h-screen mt-20`}>This is Contact Page</div>
   )
 }
 
