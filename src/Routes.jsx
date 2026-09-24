@@ -6,6 +6,8 @@ import Layout from "./components/Layout/Layout";
 import NotFoundpage from "./components/NotFoundpage";
 
 
+
+
 export const Routes= createBrowserRouter([
     {
          path: "/",
@@ -22,7 +24,8 @@ export const Routes= createBrowserRouter([
             {
                 path: "/contact",
                 element: <Contact />
-            }
+            },
+           
          ]
     },
     
