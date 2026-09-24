@@ -4,6 +4,7 @@ import Contact from "./components/Contact";
 import Home from "./components/Home";
 import Layout from "./components/Layout/Layout";
 import NotFoundpage from "./components/NotFoundpage";
+import Product from "./components/Product";
 
 
 
@@ -25,6 +26,10 @@ export const Routes= createBrowserRouter([
                 path: "/contact",
                 element: <Contact />
             },
+            {
+                path: "/product",
+                element: <Product />
+            }
            
          ]
     },
