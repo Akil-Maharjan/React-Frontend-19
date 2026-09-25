@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ThemeContext } from "../context/ThemeContext";
 
 
 const initialForm = {
@@ -23,6 +24,7 @@ function formProduct(product){
     }
 }
 const AddEditModal = ({mode, product, onSave, onCancel}) => {
+   const {theme} = useContext(ThemeContext);
     const [form, setForm]= useState(formProduct(product))
 
     function handleChange(e){
@@ -37,7 +39,7 @@ const AddEditModal = ({mode, product, onSave, onCancel}) => {
     
   return (
        <div className="fixed inset-0   flex flex-col items-center justify-center">
-            <div className="flex flex-col  items-center gap-4 bg-white p-4 rounded-md shadow-md">
+            <div className={`${theme === 'light' ? 'bg-white text-black border-black' : 'bg-gray-900 text-white border-white'} flex flex-col border items-center gap-4  p-4 rounded-md shadow-md`}>
                <h1>{mode === "edit" ? "Update Product" : "Add Prodcut"}</h1>
 
                <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
